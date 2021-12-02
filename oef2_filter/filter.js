@@ -3,16 +3,19 @@
 // However, the page has to be completely loaded first.
 // Write extra code here that accomplishes this.
 
-
+let searchField = document.getElementById("searchfield");
+let table = document.getElementById("table");
+window.addEventListener("load", () => {
+    searchField.addEventListener("input", filter);
+})
 
 
 /**
  * Hides or shows table rows, based on the search term of the user.
  */
 function filter() {
-  // write code to check the table values. Some tips:
-  // - get a list of table rows with 'table.rows'.
-  // - get all cells inside a row with 'row.cells' (also a list).
-  // - change the visibility of a row with 'row.style.display'. Use either 'table row' or 'none'.
-  // make sure to ask for help or search online if you have trouble using these properties and methods.
+    let rowArray = [...table.rows];
+    rowArray.shift();
+    let keyword = searchField.value;
+    rowArray.forEach(r => r.style.display = !r.innerHTML.includes(keyword) && keyword !== "" ? "none" : "table-row")
 }
